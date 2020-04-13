@@ -2,6 +2,7 @@ package org.iit.mmp.adminmodule;
 
 import java.util.HashMap;
 
+import org.iit.mmp.HelperMethods.HelperMethod;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,17 +31,26 @@ public class AdminPage {
 		Thread.sleep(5000);
 		
 		Select approvepatient = new Select(driver.findElement(By.id("sapproval")));
-		approvepatient.selectByVisibleText("Accepted");
+	//	approvepatient.selectByVisibleText("Accepted");
+		approvepatient.selectByValue("1");
+	
+		
 		
 		
 		driver.findElement(By.xpath("//input[@value='Submit']")).click();
+		Thread.sleep(2000);
 		
 		Alert alrt = driver.switchTo().alert();
+
 		String actual = alrt.getText();
 		alrt.accept();
-		return actual;
-
+        Thread.sleep(3000);
+    	HelperMethod submenu = new HelperMethod(driver);
+		submenu.navigateToSubMenu("Logout");
 		
+		return actual;
+		
+
 		
 		
 	}

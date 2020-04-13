@@ -19,7 +19,7 @@ public class HelperMethod {
 	public void navigateToSubMenu(String subMenuTxt)
 	{
 		
-		driver.findElement(By.xpath("//ul/li[@class='submenu']/a/span[contains(text(),'"+subMenuTxt+"')]")).click();
+		driver.findElement(By.xpath("//ul/li/a/span[contains(text(),'"+subMenuTxt+"')]")).click();
 	    System.out.println("submenu users clicked");
 	}
 

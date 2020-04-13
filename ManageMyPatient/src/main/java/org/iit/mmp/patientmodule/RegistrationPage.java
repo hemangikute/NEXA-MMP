@@ -1,4 +1,4 @@
-
+	
 
 package org.iit.mmp.patientmodule;
 import java.text.SimpleDateFormat;
@@ -27,25 +27,28 @@ public class RegistrationPage {
 	public HashMap<String,String> registerPatient(String username, String password) throws Exception
 	{
 		
+//	driver.findElement(By.xpath("//a[contains(text(), 'Patient Login')]")).click();
+//		driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
 		WebElement firstnameTxtField = driver.findElement(By.id("firstname"));
-		String fNameValue = "testFN" + (char) (65+rnd.nextInt(26));
+		String fNameValue = "hemaFN" + (char) (65+rnd.nextInt(26));
 		firstnameTxtField.sendKeys(fNameValue);
 		hMap.put("firstname", firstnameTxtField.getAttribute("value"));
+		System.out.println("first name of the patient"+fNameValue);
 		
 		WebElement lastnameTxtField = driver.findElement(By.id("lastname"));
-		String lNameValue = "testLN" + (char) (65+rnd.nextInt(26));
+		String lNameValue = "hemaLN" + (char) (65+rnd.nextInt(26));
 		lastnameTxtField.sendKeys(lNameValue);
 		hMap.put("lastname", lastnameTxtField.getAttribute("value"));
 		
 		
-		SimpleDateFormat sdf = new  SimpleDateFormat("MM/dd/YYYY");
-		Date d = new Date();
-		
-		
-		WebElement datepickerTxtField = driver.findElement(By.id("datepicker"));
-		datepickerTxtField.sendKeys(sdf.format(d));
-		hMap.put("datepicker", datepickerTxtField.getAttribute("value"));
-		
+//		SimpleDateFormat sdf = new  SimpleDateFormat("MM/dd/YYYY");
+//		Date d = new Date();
+//		
+//		
+//		WebElement datepickerTxtField = driver.findElement(By.id("datepicker"));
+//		datepickerTxtField.sendKeys(sdf.format(d));
+//		hMap.put("datepicker", datepickerTxtField.getAttribute("value"));
+//		
 		
 		WebElement licenseTxtField = driver.findElement(By.id("license"));
 		licenseTxtField.sendKeys("12345678");
@@ -77,7 +80,7 @@ public class RegistrationPage {
 		long zipvalue = 10000 + rnd.nextInt(90000);  //generating random 5 digit no using random class
 		zipcodeTxtField.sendKeys(""+zipvalue);
 		hMap.put("zipcode", zipcodeTxtField.getAttribute("value"));
-		
+	
 		
 		WebElement ageTxtField = driver.findElement(By.id("age"));
 		long ageValue = 10 + rnd.nextInt(90);
@@ -93,6 +96,7 @@ public class RegistrationPage {
 		WebElement weightTxtField = driver.findElement(By.id("weight"));
 		weightTxtField.sendKeys("45");
 		hMap.put("weight", weightTxtField.getAttribute("value"));
+		System.out.println("weight of the user is "+weightTxtField);
 		
 		
 		WebElement pharmacyTxtField = driver.findElement(By.id("pharmacy"));
@@ -132,9 +136,10 @@ public class RegistrationPage {
 		answerTxtField.sendKeys(username);
 		hMap.put("answer", answerTxtField.getAttribute("value"));
 		
+		Thread.sleep(5000);
 		driver.findElement(By.name("register")).click();
 		
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		
 		Alert alrt = driver.switchTo().alert();
 		String successmsg = alrt.getText();

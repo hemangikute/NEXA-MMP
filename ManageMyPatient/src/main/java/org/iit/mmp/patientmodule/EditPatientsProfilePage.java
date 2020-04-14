@@ -36,31 +36,61 @@ public class EditPatientsProfilePage {
 	public boolean ValidatePatientProfile(	HashMap<String, String> hMap ) throws Exception
 	{
 		
-	
-		
+			
 		HelperMethod submenu = new HelperMethod(driver);
 		submenu.navigateToSubMenu("Profile");
 		boolean result = false;
 		
 		
-		String expectedweight = hMap.get("weight");
-		System.out.println("expected weight from hmap"+expectedweight);
-		String actualweight = driver.findElement(By.name("weight")).getAttribute("value");
-		String actualage = driver.findElement(By.xpath("//input[@name='age']")).getAttribute("value");
+		String expectedFname = hMap.get("firstname");
+		String actualFname = driver.findElement(By.name("firstname")).getAttribute("value");
 
-		System.out.println("actual weight"+actualweight);
-		System.out.println("actual age"+actualage);
+		String expectedLname = hMap.get("lastname");
+		String actualLname = driver.findElement(By.name("lastname")).getAttribute("value");
 
-		
-				if(actualweight.equals(expectedweight))
-				{
-					result = true;
-		
-				}
-		return result;
-	     
+		String expectedLicense = hMap.get("license");
+		String actualLicense = driver.findElement(By.name("license")).getAttribute("value");
 	
+		String expectedSsn = hMap.get("ssn");
+		String actualSsn = driver.findElement(By.name("ssn")).getAttribute("value");
+
+		String expectedHeight = hMap.get("height");
+		String actualHeight = driver.findElement(By.name("height")).getAttribute("value");
 		
+		String expectedState = hMap.get("state");
+		String actualState = driver.findElement(By.name("state")).getAttribute("value");
+		
+		String expectedCity = hMap.get("city");
+		String actualCity = driver.findElement(By.name("city")).getAttribute("value");
+		
+		String expectedAddress = hMap.get("address");
+		String actualAddress = driver.findElement(By.name("address")).getAttribute("value");
+		
+		String expectedZip = hMap.get("zipcode");
+		String actualZip = driver.findElement(By.name("zipcode")).getAttribute("value");
+		
+		String expectedAge = hMap.get("age");
+		String actualAge = driver.findElement(By.name("age")).getAttribute("value");
+		
+		String expectedWeight = hMap.get("weight");
+		String actualWeight = driver.findElement(By.name("weight")).getAttribute("value");
+		
+			
+		
+		if((actualFname.equals(expectedFname))&& (actualLname.equals(expectedLname))&&(actualLicense.equals(expectedLicense))
+			&&(actualSsn.equals(expectedSsn))&&(actualHeight.equals(expectedHeight))&&(actualState.equals(expectedState))
+			&&(actualCity.equals(expectedCity))&&(actualAddress.equals(expectedAddress))&&(actualZip.equals(expectedZip))
+			&&(actualAge.equals(expectedAge))&&(actualWeight.equals(expectedWeight)))
+			
+		{
+					
+		result = true;
+		
+				
+		}
+	
+		return result;
+
 	}
 
 	
@@ -93,136 +123,75 @@ public class EditPatientsProfilePage {
 		 String expectedheightfromeditprofile = hMap.get("height");
 	     driver.findElement(By.id("height")).clear();
 	     driver.findElement(By.id("height")).sendKeys(height);
-	     String actualheightafteredit =  driver.findElement(By.id("height")).getAttribute("value");
+	     String actualheightafteredit =  driver.findElement(By.name("height")).getAttribute("value");
 	     
 	     String expectedstatefromeditprofile = hMap.get("state");
 	     driver.findElement(By.id("state")).clear();
 	     driver.findElement(By.id("state")).sendKeys(state);
-	     String actualstateafteredit =  driver.findElement(By.id("state")).getAttribute("value");
+	     String actualstateafteredit =  driver.findElement(By.name("state")).getAttribute("value");
 	     
 	     String expectedcityfromeditprofile = hMap.get("city");
 	     driver.findElement(By.id("city")).clear();
 	     driver.findElement(By.id("city")).sendKeys(city);
-	     String actualcityafteredit =  driver.findElement(By.id("city")).getAttribute("value");
+	     String actualcityafteredit =  driver.findElement(By.name("city")).getAttribute("value");
 	     
 	     String expectedaddressfromeditprofile = hMap.get("address");
 	     driver.findElement(By.id("addr")).clear();
 	     driver.findElement(By.id("addr")).sendKeys(address);
-	     String actualaddressafteredit =  driver.findElement(By.id("addr")).getAttribute("value");
+	     String actualaddressafteredit =  driver.findElement(By.name("address")).getAttribute("value");
 	     
 	     String expectedzipfromeditprofile = hMap.get("zipcode");
 	     driver.findElement(By.id("zip")).clear();
 	     driver.findElement(By.id("zip")).sendKeys(zipcode);
-	     String actualzipafteredit =  driver.findElement(By.id("zip")).getAttribute("value");
+	     String actualzipafteredit =  driver.findElement(By.name("zipcode")).getAttribute("value");
 	     
 	     String expectedagefromeditprofile = hMap.get("age");
 	     driver.findElement(By.id("age")).clear();
 	     driver.findElement(By.id("age")).sendKeys(age);
-	     String actualageafteredit =  driver.findElement(By.id("age")).getAttribute("value");
+	     String actualageafteredit =  driver.findElement(By.name("age")).getAttribute("value");
 	     
 	     String expectedweightfromeditprofile = hMap.get("weight");
 	     driver.findElement(By.id("weight")).clear();
 	     driver.findElement(By.id("weight")).sendKeys(weight);
-	     String actualweightafteredit =  driver.findElement(By.id("weight")).getAttribute("value");
+	     String actualweightafteredit =  driver.findElement(By.name("weight")).getAttribute("value");
 	     
 	      String expectedfnamefromeditprofile = hMap.get("firstname");
 	     driver.findElement(By.id("fname")).clear();
 	     driver.findElement(By.id("fname")).sendKeys(fname);
-	     String actualfnamefteredit =  driver.findElement(By.id("fname")).getAttribute("value");
+	     String actualfnamefteredit =  driver.findElement(By.name("firstname")).getAttribute("value");
 	  
 	     String expectedlnamefromeditprofile = hMap.get("lastname");
 	     driver.findElement(By.id("lname")).clear();
 	     driver.findElement(By.id("lname")).sendKeys(lname);
-	     String actuallnamefteredit =  driver.findElement(By.id("lname")).getAttribute("value");
+	     String actuallnamefteredit =  driver.findElement(By.name("lastname")).getAttribute("value");
 	   
 	     String expectedlicnfromeditprofile = hMap.get("license");
 	     driver.findElement(By.id("licn")).clear();
 	     driver.findElement(By.id("licn")).sendKeys(licn);
-	     String actuallicnfteredit =  driver.findElement(By.id("licn")).getAttribute("value");
+	     String actuallicnfteredit =  driver.findElement(By.name("license")).getAttribute("value");
 	     
 	     String expectedssnfromeditprofile = hMap.get("ssn");
 	     driver.findElement(By.id("ssn")).clear();
 	     driver.findElement(By.id("ssn")).sendKeys(ssn);
-	     String actualssnfteredit =  driver.findElement(By.id("ssn")).getAttribute("value");
+	     String actualssnfteredit =  driver.findElement(By.name("ssn")).getAttribute("value");
 	     
 	     driver.findElement(By.id("Sbtn")).click();
 	         
 	     Alert alrt = driver.switchTo().alert();
-         String actual = alrt.getText();
+         String actualAlert= alrt.getText();
          alrt.accept();
 	         
-	        if(actualheightafteredit.equals(expectedheightfromeditprofile))
-			{
-		        	result = true;
-	
-			}
-	        
-		  if(actualstateafteredit.equals(expectedstatefromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		   
-		  if(actualcityafteredit.equals(expectedcityfromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		   
-		  if(actualaddressafteredit.equals(expectedaddressfromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		   
-		  if(actualzipafteredit.equals(expectedzipfromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		   
-		  if(actualageafteredit.equals(expectedagefromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		   
-		  if(actualweightafteredit.equals(expectedweightfromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		   
-		 if(actualfnamefteredit.equals(expectedfnamefromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		  if(actuallnamefteredit.equals(expectedlnamefromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		  if(actuallicnfteredit.equals(expectedlicnfromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
-		  if(actualssnfteredit.equals(expectedssnfromeditprofile))
-			{
-		        	result = true;
-	
-			}
-		  
+        if ((actualheightafteredit.equals(expectedheightfromeditprofile))&& (actualstateafteredit.equals(expectedstatefromeditprofile))
+        	&& (actualcityafteredit.equals(expectedcityfromeditprofile)) &&   (actualaddressafteredit.equals(expectedaddressfromeditprofile))
+        	&&(actualzipafteredit.equals(expectedzipfromeditprofile))&& (actualageafteredit.equals(expectedagefromeditprofile))
+        	&& (actualweightafteredit.equals(expectedweightfromeditprofile))&& (actualfnamefteredit.equals(expectedfnamefromeditprofile))
+            && (actuallnamefteredit.equals(expectedlnamefromeditprofile))&& (actuallicnfteredit.equals(expectedlicnfromeditprofile))
+            && (actuallicnfteredit.equals(expectedlicnfromeditprofile))&& (actualssnfteredit.equals(expectedssnfromeditprofile)))
+		
+        {
+		        return true;
+		
+        }
 		 
 		return result;
 		

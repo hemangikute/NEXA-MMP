@@ -18,7 +18,7 @@ public class EditPatientsProfilePage {
 	 * STEP4: ENTER VALID DATA AND CLICK ON "SAVE" BUTTON.
 	 * STEP5: CLICK ON "OK" BUTTON ON POP UP WINDOW.
 	 * STEP6: VALIDATE DATA IS REFLECTED IN THE PROFILE PAGE OF THE PATIENT.
-	 * 
+	 * STEP7:
 	 * 
 	 */
 
@@ -29,7 +29,7 @@ public class EditPatientsProfilePage {
 		this.driver = driver;	
 		
 	}
-
+        System.out.println("creating a new hashmap");
 	HashMap<String, String> hMap = new HashMap<String, String>();
 
 

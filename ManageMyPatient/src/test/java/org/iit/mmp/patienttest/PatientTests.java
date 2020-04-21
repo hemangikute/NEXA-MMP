@@ -1,23 +1,24 @@
 package org.iit.mmp.patienttest;
 
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.iit.mmp.HelperMethods.HelperMethod;
-import org.iit.mmp.adminmodule.AdminLogin;
-import org.iit.mmp.adminmodule.AdminPage;
 import org.iit.mmp.patientmodule.EditPatientsProfilePage;
+import org.iit.mmp.patientmodule.Information;
 import org.iit.mmp.patientmodule.PatientLogin;
 import org.iit.mmp.patientmodule.RegistrationPage;
-import org.openqa.selenium.Alert;
+import org.iit.mmp.patientmodule.ScheduleAnAppointment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.iit.mmp.adminmodule.*;
+import org.iit.mmp.patientmodule.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -30,69 +31,63 @@ import io.github.bonigarcia.wdm.WebDriverManager;
               */
             		
 
-public class PatientTests {
+public class PatientTests 
+{
 	
 	WebDriver driver;
 	Random rnd = new Random();
 	HashMap<String, String> hMap = new HashMap<String, String>();
-//	RegistrationPage regpage = new RegistrationPage(driver);
-//	HelperMethod submenu = new HelperMethod(driver);
-//	AdminLogin admin = new AdminLogin(driver);
-//	PatientLogin patientlogin = new PatientLogin(driver);
-//
-//	
-	String usernameValue = "hemaManiKut" + rnd.nextInt(90);
-	String passwordValue = "hemaManiKut" + rnd.nextInt(90);
+	HashMap<String, String> hashMap = new HashMap<String, String>();
+
+	
+//	String usernameValue = "HemaKute" + rnd.nextInt(90);
+//	String passwordValue = "HemaKute" + rnd.nextInt(90);
+	
 
 
-			/*
-			 * LAUNCH BROWSER
-			 */
-	@Test(enabled=true, priority = 1)
+  		
+	@BeforeClass()
 	public void LaunchBrowser() throws Exception
 	{
 		WebDriverManager.chromedriver().setup();
-		 driver = new ChromeDriver();
-	//	WebDriverManager.firefoxdriver().setup();
-		//WebDriver driver = new FirefoxDriver();
-		driver.get("http://96.84.175.78/MMP-Release1-Integrated-Build.2.4.000/portal/registration.php");
-	//	driver.get("http://96.84.175.78/MMP-Release1-Integrated-Build.2.4.000/portal/login.php");
+        driver = new ChromeDriver();
+        
+//        WebDriverManager.firefoxdriver().setup();
+//        driver = new FirefoxDriver();
+
+		driver.get("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/registration.php");
 
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		
 	}
-				/*
-				 * REGISTER PATIENT
-				 */
-	@Test(enabled=true, priority = 5)
+	
+	
+	
+				/*  REGISTER A PATIENT  */
+	
+	@Test(enabled=false, priority = 1)
 	public void registerPatient() throws Exception
 	{
 		
+		
 		RegistrationPage regpage = new RegistrationPage(driver);
-	//	String usernameValue = "testUName" + rnd.nextInt(90);
-		//String passwordValue = "testPword" + rnd.nextInt(90);
-		hMap = regpage.registerPatient(usernameValue, passwordValue);
+	//    hMap = regpage.registerPatient(usernameValue, passwordValue);
 		
 		String actualmsg = hMap.get("successmsg").trim();
 		String expectedmsg = "Thank you for registering with MMP.";
 		Assert.assertEquals(actualmsg, expectedmsg);
 		
-		System.out.println("username is "+usernameValue);
-		System.out.println("password is "+passwordValue);
 	}	
 		
-			/*  
-			 *   ADMIN LOGIN
-			 *   
-			 */
-	@Test(enabled=true, priority = 10)
+			/* APPROVE PATIENT */
+	@Test(enabled=false, priority = 10)
 	public void approvePatient() throws Exception
 	{
 		
 	
-		driver.get("http://96.84.175.78/MMP-Release1-Integrated-Build.2.4.000/admin/login.php");
+		driver.get("http://96.84.175.78/MMP-Release2-Admin-Build.2.1.000/login.php");
 		AdminLogin admin = new AdminLogin(driver);
 		admin.logintoAdmin("Thomas_444", "Edison_444");
 		
@@ -101,57 +96,69 @@ public class PatientTests {
 		submenu.navigateToSubMenu("Users");
 		
 		
-		AdminPage adminpage = new AdminPage(driver);
+	    AdminPage adminpage = new AdminPage(driver);
 		String actual = adminpage.approvePatient(hMap).trim();
 		String expected = "USER has been updated.";
-		AssertJUnit.assertEquals(actual, expected);
+		Assert.assertEquals(actual, expected);
+		System.out.println("assert succeed");
+
+//		System.out.println("username"+usernameValue);
+//			System.out.println("password"+passwordValue);
 	}
 	
-					/* 
-					 * PATIENT LOGIN 
-					*/
+					
+					 /* VALIDATING PATIENT  */
+				
 	
 	@Test(enabled = true, priority = 15)
 	public void patientLogin() throws Exception
 	{
 		
-   driver.get("http://96.84.175.78/MMP-Release1-Integrated-Build.2.4.000/portal/login.php");
+		driver.get("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
 		PatientLogin patientlogin = new PatientLogin(driver);
 		
-		patientlogin.patientLogin(usernameValue, passwordValue);
+	//    patientlogin.patientLogin(usernameValue, passwordValue);
+	   
+	    patientlogin.patientLogin("HemaMKute79", "HemaMKute33");
 
-		String actualvalue = patientlogin.fetchUname().trim();
-		String expectedvalue = usernameValue;
-		
-		Assert.assertEquals(actualvalue, expectedvalue);
+
+//	System.out.println("username"+usernameValue);
+//		System.out.println("password"+passwordValue);
+//		
+//		String actualvalue = patientlogin.fetchUname().trim();
+//		String expectedvalue = usernameValue;
+
+	//	Assert.assertEquals(actualvalue, expectedvalue, "this is user");
 		
 		
 
 		
 	}
-                  /* 
-                   * VALIDATE PATIENT PROFILE
-                   */
+                   
+                   /* VALIDATE PATIENT PROFILE    */
+                   
 	
-	@Test(enabled = true, priority = 20)
+	@Test(enabled = false, priority = 20)
 	
 	public void ValidatePatientProfile() throws Exception
 	{
+		HelperMethod submenu = new HelperMethod(driver);
+		submenu.navigateToSubMenu("Profile");
+		
 		EditPatientsProfilePage validatePatientProfile = new EditPatientsProfilePage(driver);
 		
 		boolean result = validatePatientProfile.ValidatePatientProfile(hMap);
 		
-		System.out.println("actual weight which is returned from a function"+result);
-		
+		Assert.assertTrue(result, "Patient validated");
 	
 		
 	}
 	
-			/*
-			 * EDIT PATIENT PROFILE
-			 */
+			
+			/*  EDIT PATIENT PROFILE   */
+			
 	
-	@Test(enabled = true, priority = 25)
+	@Test(enabled = false, priority = 25)
 	
 	public void editPatientProfile() throws Exception
 	{
@@ -172,15 +179,72 @@ public class PatientTests {
 		
 		EditPatientsProfilePage validatePatientProfile = new EditPatientsProfilePage(driver);
 		
-		boolean result = validatePatientProfile.editProfilePage(fname, lname, license, ssn, height, state, "LA", address, "90701", age, weight, hMap);
+		boolean result = validatePatientProfile.editProfilePage(fname, lname, license, ssn, height, "nebraska", "colorado", address, "52002", age, weight, hMap);
 		
-		System.out.println("actual height which is returned from a edit profile function"+result);
+		Assert.assertTrue(result, "Patient's data edited successfully");
 		
+		
+		EditPatientsProfilePage validatePatientProfileagain = new EditPatientsProfilePage(driver);
+		
+		boolean newresult = validatePatientProfileagain.ValidatePatientProfile(hMap);
+		
+		Assert.assertTrue(newresult, "Patient validated after editing ");
+
+	}
 	
-		
+	@Test(enabled=false, priority = 30)
+	public void scheduleAnAppointment()
+	{
+		ScheduleAnAppointment appointment = new ScheduleAnAppointment(driver);
+		appointment.scheduleAnAppointment("Dr.Charlie");
+	}
+	
+	@Test(enabled = false, priority = 35)
+	public void viewInformation() throws IOException
+	{
+		Information info = new Information(driver);
+		boolean actualdata = info.readInformation();
+		System.out.println("printing file"+actualdata);
+		Assert.assertTrue(actualdata);
 	}
 	
 	
+	@Test (enabled = false, priority = 35)
+	public void CreatePatientFees() throws Exception
+	{
+
+		driver.get("http://96.84.175.78/MMP-Release2-Admin-Build.2.1.000/login.php");
+		AdminLogin admin = new AdminLogin(driver);
+		admin.logintoAdmin("Thomas_444", "Edison_444");
+		
+		CreatePatientData patientdata = new CreatePatientData(driver);
+		String FeesResultMessage = patientdata.createPatientFees();
+		
+	//	patientdata.createPatientReport();
+		
+		String PrescriptionResultMessage = patientdata.createPatientPrescription();
+			
+	}
+	
+
+	@Test (enabled = true, priority = 40)
+	public void SendMessageToDoctor() throws Exception
+	{
+		SendMessageToDoctor message = new SendMessageToDoctor(driver);
+		hashMap = message.sendMessageToDoctor("Got Xray", "want to inform  i have got  the XRay and are fine ");
+	}
+	
+
+	@Test (enabled = true, priority = 45)
+	public void CheckPatientMessages() throws Exception
+	{
+		driver.get("http://96.84.175.78/MMP-Release2-Admin-Build.2.1.000/login.php");
+		AdminLogin admin = new AdminLogin(driver);
+		admin.logintoAdmin("Thomas_444", "Edison_444");
+		
+		CheckPatientMessages message = new CheckPatientMessages(driver);
+		message.checkpatientmessage(hashMap);
+	}
 	
 }
 	

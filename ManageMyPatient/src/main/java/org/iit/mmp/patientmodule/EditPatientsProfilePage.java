@@ -37,8 +37,7 @@ public class EditPatientsProfilePage {
 	{
 		
 			
-		HelperMethod submenu = new HelperMethod(driver);
-		submenu.navigateToSubMenu("Profile");
+		
 		boolean result = false;
 		
 		

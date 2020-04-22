@@ -30,14 +30,13 @@ public class CheckPatientMessages
 		HelperMethod submenu = new HelperMethod(driver);
 		submenu.navigateToSubMenu("Messages");
 		
-		WebElement mytable = driver.findElement(By.xpath("//table[@class='table']/tbody"));
-		
-		List<WebElement> rows_table = mytable.findElements(By.tagName("tr"));
-		
 		String expectedsubject = hashMap.get("subject");
 		String expectedmessage = hashMap.get("messagedesc");
 	
+		/*
+		WebElement mytable = driver.findElement(By.xpath("//table[@class='table']/tbody"));
 		
+		List<WebElement> rows_table = mytable.findElements(By.tagName("tr"));
 		for(int row=0;row<rows_table.size();row++)
 			{
 				List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));				  
@@ -63,6 +62,14 @@ public class CheckPatientMessages
 						
 				}
 			}
+			*/
+		List<WebElement> rowData = driver.findElements(By.xpath("//table[@class='table']/tbody/tr/td//b[contains(text(),'"+expectedsubject+"')]/ancestor::tr/following-sibling::tr[1]"));
+		for (WebElement webElement : rowData) {
+			if(webElement.getText().equals(expectedmessage)){
+				System.out.println("got the message");
+				break;
+			}
+		}
 	}
 	
 				

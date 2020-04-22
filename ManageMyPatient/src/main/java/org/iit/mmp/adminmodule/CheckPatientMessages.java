@@ -30,40 +30,58 @@ public class CheckPatientMessages
 		HelperMethod submenu = new HelperMethod(driver);
 		submenu.navigateToSubMenu("Messages");
 		
+		
 		WebElement mytable = driver.findElement(By.xpath("//table[@class='table']/tbody"));
 		
 		List<WebElement> rows_table = mytable.findElements(By.tagName("tr"));
 		
 		String expectedsubject = hashMap.get("subject");
 		String expectedmessage = hashMap.get("messagedesc");
-	
 		
-		for(int row=0;row<rows_table.size();row++)
+		
+		List<WebElement> rowData = driver.findElements(By.xpath("//table[@class='table']/tbody/tr/td//b[contains(text(),'"+expectedsubject+"')]/ancestor::tr/following-sibling::tr[1]"));
+		for (WebElement webElement : rowData) {
+			if(webElement.getText().equals(expectedmessage)&& webElement.getText().equals(expectedsubject) )
+			{
+			    System.out.println("got the message");
+				break;
+		/*
+		String actualsubject = "";
+		
+		boolean flag1=false;
+		boolean flag2=false;
+		
+		for(int row=1;row<rows_table.size();row++)
 			{
 				List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));				  
 						
 			for (int column=0; column<Columns_row.size(); column++)
 			   {
-					
-			//	System.out.println("printing columns data"+Columns_row.get(column).getText());
 				WebElement e =   Columns_row.get(column);
-						if(e.getText().equals(expectedsubject))
+				if(e.getText().equals(expectedsubject))
 						{
-							String subject = e.getText();
-							System.out.println("printing subject"+subject);
+							actualsubject = e.getText();
+							System.out.println("Message checked by the doctor");
+							break;
 						}	
 						
 						if(e.getText().equals(expectedmessage))
 						{
 							String subjectmessage = e.getText();
-							System.out.println("printing subject message"+subjectmessage);
+							System.out.println(subjectmessage);
 							break;
 						}
-						
+							return subject;		
 						
 				}
+			
+			break;
 			}
+		
+	*/	
+			
+	}
+		}
 	}
 	
-				
 }

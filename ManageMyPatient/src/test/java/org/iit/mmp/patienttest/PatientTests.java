@@ -142,8 +142,7 @@ public class PatientTests
 	
 	public void ValidatePatientProfile() throws Exception
 	{
-		HelperMethod submenu = new HelperMethod(driver);
-		submenu.navigateToSubMenu("Profile");
+		
 		
 		EditPatientsProfilePage validatePatientProfile = new EditPatientsProfilePage(driver);
 		
@@ -230,8 +229,9 @@ public class PatientTests
 	@Test (enabled = true, priority = 40)
 	public void SendMessageToDoctor() throws Exception
 	{
+						
 		SendMessageToDoctor message = new SendMessageToDoctor(driver);
-		hashMap = message.sendMessageToDoctor("Got Xray", "want to inform  i have got  the XRay and are fine ");
+		hashMap = message.sendMessageToDoctor("blood report", "informing doctor that i got blood report");
 	}
 	
 
@@ -244,6 +244,7 @@ public class PatientTests
 		
 		CheckPatientMessages message = new CheckPatientMessages(driver);
 		message.checkpatientmessage(hashMap);
+		
 	}
 	
 }

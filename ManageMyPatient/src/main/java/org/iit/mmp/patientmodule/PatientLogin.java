@@ -2,6 +2,7 @@ package org.iit.mmp.patientmodule;
 
 import java.util.HashMap;
 
+import org.iit.mmp.HelperMethods.HelperMethod;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +30,8 @@ WebDriver driver;
 
 		driver.findElement(By.name("submit")).click();
 	
-			
+		
+		
 		
 		
 //		driver.findElement(By.id("username")).sendKeys(username);
